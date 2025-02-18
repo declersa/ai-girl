@@ -1,0 +1,68 @@
+<div class="min-h-screen bg-gradient-to-br from-rose-50 to-pink-50">
+  <div class="flex min-h-screen">
+    <!-- Left side with image -->
+    <div class="hidden lg:block image-container">
+      <img 
+        src="<%= question.image %>"
+        alt="AI Companion"
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <!-- Right side with quiz content -->
+    <div class="w-full lg:w-2/3 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-sm font-semibold text-gray-500">Trouver votre AI GIRLFRIEND</h2>
+            <span class="text-sm text-gray-500">Question <%= currentQuestion + 1 %> sur <%= totalQuestions %></span>
+          </div>
+          
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div
+              class="bg-gradient-to-r from-rose-500 to-pink-500 h-2 rounded-full transition-all duration-500"
+              style="width: <%= ((currentQuestion + 1) / totalQuestions) * 100 %>%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">
+            <%= question.text %>
+          </h1>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <% question.options.forEach(option => { %>
+              <button
+                type="button"
+                data-action="answer"
+                data-answer="<%= option.id %>"
+                class="flex flex-col items-center p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-rose-500 transition duration-300"
+              >
+                <div class="mb-4">
+                  <%- include('partials/icon', { name: option.icon }) %>
+                </div>
+                <span class="text-lg font-semibold text-gray-900"><%= option.text %></span>
+              </button>
+            <% }); %>
+          </div>
+
+          <% if (currentQuestion > 0) { %>
+            <div class="mt-8 text-center">
+              <button
+                type="button"
+                data-action="previous"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-rose-600 bg-white border border-rose-300 rounded-md hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transition-colors duration-300"
+              >
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Question précédente
+              </button>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

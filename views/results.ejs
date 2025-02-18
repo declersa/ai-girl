@@ -1,0 +1,63 @@
+<div class="min-h-screen bg-gradient-to-br from-rose-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Voici nos recommandations</h1>
+      <p class="text-lg text-gray-600">
+        Basé sur vos réponses, voici les services qui correspondent le mieux à vos préférences
+      </p>
+      <p class="text-lg text-gray-600"><em>Note : Les prix et fonctionnalités peuvent varier selon les régions et les mises à jour des plateformes.</em></p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <% services.forEach((service, index) => { %>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-500 hover:scale-105 relative">
+          <% if (index < 3) { %>
+            <div class="absolute top-6 right-6">
+              <% if (index === 0) { %>
+                <img class="medaille" src="https://ai-girlfriend.skillsative.com/images/or.svg">
+              <% } else if (index === 1) { %>
+                <img class="medaille" src="https://ai-girlfriend.skillsative.com/images/argent.svg">
+              <% } else { %>
+                <img class="medaille" src="https://ai-girlfriend.skillsative.com/images/bronze.svg">
+              <% } %>
+            </div>
+          <% } %>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-2"><%= service.name %></h2>
+            <p class="text-gray-600 mb-4"><%= service.description %></p>
+            <p class="text-sm text-rose-600 font-semibold mb-4"><%= service.priceRange %></p>
+            
+            <ul class="space-y-2 mb-6">
+              <% service.features.forEach(feature => { %>
+                <li class="flex items-center text-gray-600">
+                  <svg class="w-4 h-4 text-rose-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <%= feature %>
+                </li>
+              <% }); %>
+            </ul>
+
+            <a
+              href="<%= service.url %>"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-full text-center bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition duration-300"
+            >
+              Découvrir
+            </a>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="text-center mt-12">
+      <button
+        type="button"
+        data-action="reset"
+        class="bg-white text-rose-600 font-semibold py-2 px-6 rounded-lg shadow hover:shadow-lg transition duration-300"
+      >
+        Recommencer le simulateur
+      </button>
+    </div>
+  </div>
+</div>
